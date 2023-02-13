@@ -1,5 +1,12 @@
 const LikertBlock = (props) => {
   const adjustedWidth = `${props.width / 2}%`;
+  let label = "";
+  if (props.label > 1) {
+    label = props.label;
+  }
+  if (props.label > 5) {
+    label += "%";
+  }
 
   let centreLine;
   if (props.neutral) {
@@ -11,7 +18,7 @@ const LikertBlock = (props) => {
       className={`likert__block ${props.className}`}
       style={{ width: adjustedWidth }}
     >
-      {props.label > 1 ? props.label : ""}
+      {label}
     </div>
   );
 };
