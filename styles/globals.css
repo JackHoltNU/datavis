@@ -129,3 +129,20 @@ h2 {
   height: 12px;
   margin-right: 10px;
 }
+
+.data__input--item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.data__input--label {
+  font-size: 20px;
+
+  margin-right: 5px;
+}
+
+.data__input--block {
+  width: 20%;
+  height: 20px;
+}

@@ -1,7 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LikertBlock from "./LikertBlock";
 
-const Likert = (props) => {
+interface Props {
+  label: string;
+  blockValues: {
+    stronglyDisagree: number;
+    disagree: number;
+    somewhatDisagree: number;
+    neutral: number;
+    somewhatAgree: number;
+    agree: number;
+    stronglyAgree: number;
+  };
+}
+
+const Likert = (props: Props) => {
   const [blockValues, setBlockValues] = useState({
     stronglyDisagree: props.blockValues.stronglyDisagree,
     disagree: props.blockValues.disagree,
@@ -12,12 +25,24 @@ const Likert = (props) => {
     stronglyAgree: props.blockValues.stronglyAgree,
   });
 
+  useEffect(() => {
+    setBlockValues({
+      stronglyDisagree: props.blockValues.stronglyDisagree,
+      disagree: props.blockValues.disagree,
+      somewhatDisagree: props.blockValues.somewhatDisagree,
+      neutral: props.blockValues.neutral,
+      somewhatAgree: props.blockValues.somewhatAgree,
+      agree: props.blockValues.agree,
+      stronglyAgree: props.blockValues.stronglyAgree,
+    });
+  }, [props]);
+
   const leftNegativeSpace =
     100 -
-    blockValues.neutral / 2 -
-    (blockValues.stronglyDisagree +
-      blockValues.disagree +
-      blockValues.somewhatDisagree);
+    +blockValues.neutral / 2 -
+    (+blockValues.stronglyDisagree +
+      +blockValues.disagree +
+      +blockValues.somewhatDisagree);
 
   return (
     <div className="likert">
