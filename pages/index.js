@@ -155,7 +155,7 @@ export default function Home() {
     neutral: 5.555,
     somewhatAgree: 6.4815,
     agree: 1.8152,
-    stronglyAgree: 6.4815,
+    stronglyAgree: 0,
   };
 
   const DF_CO_D_Per = {
@@ -248,6 +248,48 @@ export default function Home() {
     somewhatAgree: 4.6296,
     agree: 1.8519,
     stronglyAgree: 0.9259,
+  };
+
+  // Likelihood Self - Digital Files
+  const DF_FF_L_LikS = {
+    stronglyDisagree: 5.5556,
+    disagree: 18.519,
+    somewhatDisagree: 12.037,
+    neutral: 31.481,
+    somewhatAgree: 17.593,
+    agree: 7.4074,
+    stronglyAgree: 7.4074,
+  };
+
+  const DF_FF_D_LikS = {
+    stronglyDisagree: 1.8519,
+    disagree: 6.4815,
+    somewhatDisagree: 7.4074,
+    neutral: 18.519,
+    somewhatAgree: 25,
+    agree: 26.852,
+    stronglyAgree: 13.889,
+  };
+
+  // Likelihood Others - Digital Files
+  const DF_FF_L_LikO = {
+    stronglyDisagree: 1.8519,
+    disagree: 0,
+    somewhatDisagree: 5.5556,
+    neutral: 8.3333,
+    somewhatAgree: 23.148,
+    agree: 38.889,
+    stronglyAgree: 22.222,
+  };
+
+  const DF_FF_D_LikO = {
+    stronglyDisagree: 0,
+    disagree: 2.7778,
+    somewhatDisagree: 0.9259,
+    neutral: 8.3333,
+    somewhatAgree: 16.667,
+    agree: 44.444,
+    stronglyAgree: 26.852,
   };
 
   // General
@@ -376,6 +418,33 @@ export default function Home() {
         <h2>A company/organisation to access private messages</h2>
         <Likert blockValues={PM_CO_L_Per} label="During life" />
         <Likert blockValues={PM_CO_D_Per} label="After death" />
+      </ChartCard>
+      <ChartCard>
+        <h1>Scenario Responses: "This scenario is likely to happen..."</h1>
+        <Key />
+        <h2>
+          "...to some people" - A friend/family member accesses digital files
+        </h2>
+        <Likert blockValues={DF_FF_L_LikO} label="During life" />
+        <Likert blockValues={DF_FF_D_LikO} label="After death" />
+        <h2>"...to me" - A friend/family member accesses digital files</h2>
+        <Likert blockValues={DF_FF_L_LikS} label="During life" />
+        <Likert blockValues={DF_FF_D_LikS} label="After death" />
+        {/* 
+        <h2>A friend/family member to access private messages</h2>
+        <Likert blockValues={PM_FF_L_Per} label="During life" />
+        <Likert blockValues={PM_FF_D_Per} label="After death" />
+
+        <h2>A company/organisation to access digital files</h2>
+        <Likert blockValues={DF_CO_L_Per} label="During life" />
+        <Likert blockValues={DF_CO_D_Per} label="After death" />
+        <h2>A company/organisation to access location data</h2>
+        <Likert blockValues={LD_CO_L_Per} label="During life" />
+        <Likert blockValues={LD_CO_D_Per} label="After death" />
+
+        <h2>A company/organisation to access private messages</h2>
+        <Likert blockValues={PM_CO_L_Per} label="During life" />
+        <Likert blockValues={PM_CO_D_Per} label="After death" /> */}
       </ChartCard>
       <ChartCard>
         <h1>Self-reported privacy values</h1>

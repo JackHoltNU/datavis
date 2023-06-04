@@ -8,11 +8,6 @@ const LikertBlock = (props) => {
     label += "%";
   }
 
-  let centreLine;
-  if (props.neutral) {
-    centreLine = <div className="likert__centreLine"></div>;
-  }
-
   return (
     <div
       className={`likert__block ${props.className}`}
