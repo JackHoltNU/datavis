@@ -1,95 +1,40 @@
 import { useEffect, useState } from "react";
 import LikertBlock from "./LikertBlock";
+import { Item } from "./types/types";
 
 interface Props {
-  label: string;
-  blockValues: {
-    stronglyDisagree: number;
-    disagree: number;
-    somewhatDisagree: number;
-    neutral: number;
-    somewhatAgree: number;
-    agree: number;
-    stronglyAgree: number;
-  };
+  item: Item;
 }
 
-const Likert = (props: Props) => {
-  const [blockValues, setBlockValues] = useState({
-    stronglyDisagree: props.blockValues.stronglyDisagree,
-    disagree: props.blockValues.disagree,
-    somewhatDisagree: props.blockValues.somewhatDisagree,
-    neutral: props.blockValues.neutral,
-    somewhatAgree: props.blockValues.somewhatAgree,
-    agree: props.blockValues.agree,
-    stronglyAgree: props.blockValues.stronglyAgree,
-  });
+const Likert = ({ item }: Props) => {
+  // for now, assuming 7 point scale
 
-  useEffect(() => {
-    setBlockValues({
-      stronglyDisagree: props.blockValues.stronglyDisagree,
-      disagree: props.blockValues.disagree,
-      somewhatDisagree: props.blockValues.somewhatDisagree,
-      neutral: props.blockValues.neutral,
-      somewhatAgree: props.blockValues.somewhatAgree,
-      agree: props.blockValues.agree,
-      stronglyAgree: props.blockValues.stronglyAgree,
-    });
-  }, [props]);
-
+  // TODO rewrite to calculate based on num of points
   const leftNegativeSpace =
     100 -
-    +blockValues.neutral / 2 -
-    (+blockValues.stronglyDisagree +
-      +blockValues.disagree +
-      +blockValues.somewhatDisagree);
+    +item.values[3] / 2 -
+    (+item.values[0] + +item.values[1] + +item.values[2]);
 
   return (
     <div className="likert">
       <div className="likert__centreline"></div>
       <div className="likert__bar">
-        <label className="likert__label">{props.label}</label>
+        <label className="likert__label">{item.title}</label>
         <div className="likert__outer">
           <div className="likert__inner">
             <LikertBlock
               width={leftNegativeSpace}
               className="likert__block--negative-space"
             />
-            <LikertBlock
-              label={Math.round(blockValues.stronglyDisagree)}
-              width={blockValues.stronglyDisagree}
-              className="likert__block--strongly-disagree"
-            />
-            <LikertBlock
-              label={Math.round(blockValues.disagree)}
-              width={blockValues.disagree}
-              className="likert__block--disagree"
-            />
-            <LikertBlock
-              label={Math.round(blockValues.somewhatDisagree)}
-              width={blockValues.somewhatDisagree}
-              className="likert__block--somewhat-disagree"
-            />
-            <LikertBlock
-              label={Math.round(blockValues.neutral)}
-              width={blockValues.neutral}
-              className="likert__block--neutral"
-            />
-            <LikertBlock
-              label={Math.round(blockValues.somewhatAgree)}
-              width={blockValues.somewhatAgree}
-              className="likert__block--somewhat-agree"
-            />
-            <LikertBlock
-              label={Math.round(blockValues.agree)}
-              width={blockValues.agree}
-              className="likert__block--agree"
-            />
-            <LikertBlock
-              label={Math.round(blockValues.stronglyAgree)}
-              width={blockValues.stronglyAgree}
-              className="likert__block--strongly-agree"
-            />
+            {item.values.map((value) => {
+              return (
+                <LikertBlock
+                  label={Math.round(value)}
+                  width={value}
+                  className="likert__block--strongly-disagree"
+                />
+              );
+            })}
           </div>
         </div>
       </div>
