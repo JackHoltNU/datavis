@@ -12,8 +12,10 @@ const Likert = ({ item }: Props) => {
   // TODO rewrite to calculate based on num of points
   const leftNegativeSpace =
     100 -
-    +item.values[3] / 2 -
-    (+item.values[0] + +item.values[1] + +item.values[2]);
+    +item.blockpairs[3].value / 2 -
+    (+item.blockpairs[0].value +
+      +item.blockpairs[1].value +
+      +item.blockpairs[2].value);
 
   return (
     <div className="likert">
@@ -23,12 +25,16 @@ const Likert = ({ item }: Props) => {
         <div className="likert__outer">
           <div className="likert__inner">
             <LikertBlock
+              label={null}
               width={leftNegativeSpace}
               className="likert__block--negative-space"
             />
-            {item.values.map((value) => {
+            {item.blockpairs.map((blockpair) => {
+              const id = blockpair.id;
+              const value = blockpair.value as number;
               return (
                 <LikertBlock
+                  key={id}
                   label={Math.round(value)}
                   width={value}
                   className="likert__block--strongly-disagree"

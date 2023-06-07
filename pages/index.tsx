@@ -10,16 +10,19 @@ export default function Home() {
   const [items, setItems] = useState<Item[]>([]);
   const [likerts, setLikerts] = useState<JSX.Element[]>([]);
 
-  const updateItems = useCallback((item: Item, id: number) => {
-    const tempArray = [...items];
-    tempArray[id] = item;
-    setItems([...tempArray]);
-    console.log(tempArray);
-  }, []);
+  const updateItems = useCallback(
+    (item: Item, id: number) => {
+      const tempArray = [...items];
+      tempArray[id] = item;
+      setItems([...tempArray]);
+      console.log(tempArray);
+    },
+    [items]
+  );
 
   useEffect(() => {
     const tempArray = items.map((item) => {
-      return <Likert item={item} />;
+      return <Likert item={item} key={item.title} />;
     });
     console.log("updating likerts");
 

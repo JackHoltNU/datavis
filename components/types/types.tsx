@@ -1,7 +1,12 @@
 type Item = {
   title: string;
-  labels: string[];
-  values: number[];
+  blockpairs: BlockPair[];
 };
 
-export type { Item };
+type BlockPair = {
+  id?: string;
+  label: string;
+  value: string | number;
+};
+
+export type { Item, BlockPair };
