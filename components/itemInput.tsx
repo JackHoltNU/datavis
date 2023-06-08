@@ -11,7 +11,11 @@ interface Props {
 const ItemInput = ({ updateItems, id }: Props) => {
   const [itemName, setItemName] = useState("test");
   const [blockNum, setBlockNum] = useState(7);
-  const defaultBlock: BlockPair = { label: "Unlabelled", value: 0 };
+  const defaultBlock: BlockPair = {
+    label: "Unlabelled",
+    value: 0,
+    colour: "CCCCCC",
+  };
   const [blockArray, setBlockArray] = useState<BlockPair[]>(
     Array(7).fill(defaultBlock)
   );

@@ -1,7 +1,7 @@
 .main {
   box-sizing: border-box;
   height: 100vh;
-  padding: 10%;
+  padding: 2% 10%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -98,7 +98,7 @@ h2 {
   height: 7px;
 }
 
-.likert__block--strongly-disagree {
+/* .likert__block--strongly-disagree {
   background-color: #e77a4b;
 }
 .likert__block--disagree {
@@ -122,7 +122,7 @@ h2 {
 
 .likert__block--strongly-agree {
   background-color: #41a1dc;
-}
+} */
 
 .key {
   display: flex;
@@ -144,7 +144,7 @@ h2 {
 }
 
 .data__input--item {
-  border: 1px solid black;
+  border: 3px solid rgb(33, 31, 31);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -179,4 +179,19 @@ h2 {
   width: 80px;
   height: 20px;
   margin: 5px;
+}
+
+.swatch {
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+}
+
+.swatch:hover {
+  cursor: pointer;
+}
+
+.colorpicker {
+  position: absolute;
+  transform: translateY(20px);
 }

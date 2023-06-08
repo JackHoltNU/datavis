@@ -27,7 +27,8 @@ const Likert = ({ item }: Props) => {
             <LikertBlock
               label={null}
               width={leftNegativeSpace}
-              className="likert__block--negative-space"
+              empty={true}
+              colour="#000"
             />
             {item.blockpairs.map((blockpair) => {
               const id = blockpair.id;
@@ -37,7 +38,7 @@ const Likert = ({ item }: Props) => {
                   key={id}
                   label={Math.round(value)}
                   width={value}
-                  className="likert__block--strongly-disagree"
+                  colour={blockpair.colour}
                 />
               );
             })}

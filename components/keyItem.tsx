@@ -1,10 +1,16 @@
-const KeyItem = (props) => {
+interface Props {
+  name: string;
+  colour: string;
+}
+
+const KeyItem = ({ name, colour }: Props) => {
   return (
     <div className="key__item">
       <div
-        className={`key__item-colour likert__block--${props.category}`}
+        className={"key__item-colour"}
+        style={{ backgroundColor: colour }}
       ></div>
-      <span className="key__item-name">{props.name}</span>
+      <span className="key__item-name">{name}</span>
     </div>
   );
 };

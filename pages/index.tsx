@@ -35,7 +35,7 @@ export default function Home() {
 
       <ChartCard>
         <h1>Title to go here</h1>
-        <Key />
+        {items[0] && <Key blockpairs={items[0].blockpairs} />}
         <h2>Subtitle to go here</h2>
         {likerts.map((likert) => {
           return likert;
