@@ -1,0 +1,65 @@
+.data__input--item {
+  background-color: rgb(60, 60, 60);
+  /* border: 3px solid rgb(33, 31, 31); */
+
+  border-radius: 4%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  padding: 10px;
+  width: 100%;
+}
+
+.data__input-section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.data__input--item-title {
+  align-items: center;
+  display: flex;
+  font-size: 1.4rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  width: 100%;
+}
+
+.data__input--block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data__input--blocklabel {
+  border-radius: 0.3rem;
+
+  font-size: 1.2rem;
+  height: 2.5rem;
+  margin-right: 5px;
+}
+
+.data__input--blockinput {
+  border-radius: 0.3rem;
+  width: 7rem;
+  height: 2.5rem;
+  margin: 0.5rem;
+}
+
+.swatch {
+  border-radius: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.swatch:hover {
+  cursor: pointer;
+}
+
+.colorpicker {
+  position: absolute;
+  transform: translateY(20px);
+}

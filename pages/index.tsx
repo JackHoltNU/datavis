@@ -9,6 +9,7 @@ import { Item } from "../components/types/types";
 export default function Home() {
   const [items, setItems] = useState<Item[]>([]);
   const [likerts, setLikerts] = useState<JSX.Element[]>([]);
+  const [chartTitle, setChartTitle] = useState("My Likert Chart");
 
   const updateItems = useCallback(
     (item: Item, id: number) => {
@@ -31,16 +32,34 @@ export default function Home() {
 
   return (
     <main className="main">
-      <ItemInput updateItems={updateItems} id={0} />
-
-      <ChartCard>
-        <h1>Title to go here</h1>
-        {items[0] && <Key blockpairs={items[0].blockpairs} />}
-        <h2>Subtitle to go here</h2>
-        {likerts.map((likert) => {
-          return likert;
-        })}
-      </ChartCard>
+      <section className="sidebar">
+        <div className="chartSetup">
+          <h1>Chart Setup</h1>
+          <label>Chart Title</label>
+          <input
+            type="text"
+            className="chartSetupTitle"
+            value={chartTitle}
+            onChange={(e) => {
+              setChartTitle(e.target.value);
+            }}
+          />
+        </div>
+        <h1>Likert Items</h1>
+        <button className="btn">Add item</button>
+        <ItemInput updateItems={updateItems} id={0} />
+        <ItemInput updateItems={updateItems} id={1} />
+      </section>
+      <section className="chartArea">
+        <ChartCard>
+          <h1>{chartTitle}</h1>
+          {items[0] && <Key blockpairs={items[0].blockpairs} />}
+          <h2>Subtitle to go here</h2>
+          {likerts.map((likert) => {
+            return likert;
+          })}
+        </ChartCard>
+      </section>
     </main>
   );
 }

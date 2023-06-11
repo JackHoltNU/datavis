@@ -9,16 +9,50 @@ interface Props {
 }
 
 const ItemInput = ({ updateItems, id }: Props) => {
-  const [itemName, setItemName] = useState("test");
+  const [itemName, setItemName] = useState("Example");
   const [blockNum, setBlockNum] = useState(7);
-  const defaultBlock: BlockPair = {
-    label: "Unlabelled",
-    value: 0,
-    colour: "CCCCCC",
-  };
-  const [blockArray, setBlockArray] = useState<BlockPair[]>(
-    Array(7).fill(defaultBlock)
-  );
+  //   const defaultBlock: BlockPair = {
+  //     label: "Unlabelled",
+  //     value: 0,
+  //     colour: "CCCCCC",
+  //   };
+  const [blockArray, setBlockArray] = useState<BlockPair[]>([
+    {
+      label: "Strongly Disagree",
+      value: 15,
+      colour: "#b71c1c",
+    },
+    {
+      label: "Disagree",
+      value: 15,
+      colour: "#d32f2f",
+    },
+    {
+      label: "Somewhat Disagree",
+      value: 15,
+      colour: "#f44336",
+    },
+    {
+      label: "Neutral",
+      value: 10,
+      colour: "#525252",
+    },
+    {
+      label: "Somewhat Agree",
+      value: 15,
+      colour: "#3f51b5",
+    },
+    {
+      label: "Agree",
+      value: 15,
+      colour: "#303f9f",
+    },
+    {
+      label: "Strongly Agree",
+      value: 15,
+      colour: "#1a237c",
+    },
+  ]);
 
   useEffect(() => {
     setBlockArray([
@@ -59,13 +93,11 @@ const ItemInput = ({ updateItems, id }: Props) => {
 
   return (
     <section className="data__input-section">
-      <h1>Likert Items</h1>
-      <button className="btn">Add item</button>
-
       <div className="data__input--item">
-        <h2 className="data__input--item-title">Item 1</h2>
+        <h2 className="data__input--item-title">Item {id + 1}</h2>
         <BlockInput
           inputName="Title"
+          colour={null}
           itemName={itemName}
           inputValue={itemName}
           callback={setItemTitle}
@@ -76,6 +108,7 @@ const ItemInput = ({ updateItems, id }: Props) => {
               key={blockpair.id}
               inputName={blockpair.label}
               inputValue={blockpair.value}
+              colour={blockpair.colour}
               itemIndex={index + 1}
               callback={updateBlockValue}
             />

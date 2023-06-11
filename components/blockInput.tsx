@@ -6,6 +6,7 @@ import { SwatchesPicker } from "react-color";
 interface Props {
   inputName: string;
   inputValue: string | number;
+  colour: string | null;
   itemName?: string;
   itemIndex?: number;
   callback: (value: BlockPair | string, optional?: number) => void;
@@ -14,20 +15,20 @@ interface Props {
 const BlockInput = ({
   inputName,
   inputValue,
-  itemName,
+  colour,
   callback,
   itemIndex,
 }: Props) => {
   const [blockLabel, setBlockLabel] = useState(inputName);
   const [blockValue, setBlockValue] = useState(inputValue);
-  const [colour, setColour] = useState<string>("#000");
+  const [pairColour, setPairColour] = useState<string>(colour);
   const [displayPicker, setDisplayPicker] = useState(false);
 
   useEffect(() => {
     const blockpair: BlockPair = {
       label: blockLabel,
       value: blockValue,
-      colour: colour,
+      colour: pairColour,
     };
 
     if (itemIndex) {
@@ -36,7 +37,7 @@ const BlockInput = ({
     } else {
       callback(blockpair.value as string);
     }
-  }, [blockValue, blockLabel, colour]);
+  }, [blockValue, blockLabel, pairColour]);
 
   return (
     <div className="data__input--block">
@@ -45,7 +46,7 @@ const BlockInput = ({
           <div
             className="swatch"
             onMouseDown={() => setDisplayPicker(true)}
-            style={{ backgroundColor: colour }}
+            style={{ backgroundColor: pairColour }}
           >
             {displayPicker && (
               <div
@@ -55,7 +56,7 @@ const BlockInput = ({
                 }}
               >
                 <SwatchesPicker
-                  onChangeComplete={(color) => setColour(color.hex)}
+                  onChangeComplete={(color) => setPairColour(color.hex)}
                 />
               </div>
             )}

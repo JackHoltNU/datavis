@@ -1,0 +1,119 @@
+.chartcard {
+  align-items: center;
+  background-color: white;
+  /* border: solid 4px black;
+    box-shadow: 5px 5px 5px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 200px;
+  min-height: 100px;
+  padding: 20px;
+  width: 100%;
+}
+
+.likert {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.likert__bar {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.likert__label {
+  font-style: italic;
+  font-size: 1.5rem;
+  padding-right: 20px;
+  text-align: right;
+  width: 10%;
+}
+
+.likert__outer {
+  align-items: center;
+  border-left: solid 3px black;
+  border-right: solid 3px black;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  /* margin: 10px 0; */
+  width: 80%;
+}
+
+.likert__inner {
+  display: flex;
+  font-size: 1.2rem;
+  height: 100%;
+  width: 100%;
+}
+
+.likert__block {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.likert__block--negative-space {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border: none;
+  height: 100%;
+}
+
+.likert__centreline {
+  border-right: 2px solid black;
+  width: 50%;
+  height: 7px;
+}
+
+/* .likert__block--strongly-disagree {
+    background-color: #e77a4b;
+  }
+  .likert__block--disagree {
+    background-color: #eb956f;
+  }
+  .likert__block--somewhat-disagree {
+    background-color: #f6cfbe;
+  }
+  
+  .likert__block--neutral {
+    background-color: #e2dfdc;
+  }
+  
+  .likert__block--somewhat-agree {
+    background-color: #b9dcf2;
+  }
+  
+  .likert__block--agree {
+    background-color: #75bbe6;
+  }
+  
+  .likert__block--strongly-agree {
+    background-color: #41a1dc;
+  } */
+
+.key {
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.key__item {
+  align-items: center;
+  display: flex;
+}
+
+.key__item-colour {
+  border: solid 1px black;
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+}
