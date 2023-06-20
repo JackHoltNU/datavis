@@ -25,6 +25,7 @@ const Likert = ({ item }: Props) => {
         <div className="likert__outer">
           <div className="likert__inner">
             <LikertBlock
+              key={`${item.id}_negspace`}
               label={null}
               width={leftNegativeSpace}
               empty={true}

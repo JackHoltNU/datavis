@@ -1,31 +1,85 @@
 import ChartCard from "../components/chartCard";
 import Likert from "../components/likert";
 import Key from "../components/key";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import BlockInput from "../components/blockInput";
 import ItemInput from "../components/itemInput";
 import { Item } from "../components/types/types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Home() {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>([
+    {
+      title: "Example",
+      id: uuidv4(),
+      blockpairs: [
+        {
+          label: "Strongly Disagree",
+          value: 15,
+          colour: "#b71c1c",
+          id: uuidv4(),
+        },
+        {
+          label: "Disagree",
+          value: 15,
+          colour: "#d32f2f",
+          id: uuidv4(),
+        },
+        {
+          label: "Somewhat Disagree",
+          value: 15,
+          colour: "#f44336",
+          id: uuidv4(),
+        },
+        {
+          label: "Neutral",
+          value: 10,
+          colour: "#525252",
+          id: uuidv4(),
+        },
+        {
+          label: "Somewhat Agree",
+          value: 15,
+          colour: "#3f51b5",
+          id: uuidv4(),
+        },
+        {
+          label: "Agree",
+          value: 15,
+          colour: "#303f9f",
+          id: uuidv4(),
+        },
+        {
+          label: "Strongly Agree",
+          value: 15,
+          colour: "#1a237c",
+          id: uuidv4(),
+        },
+      ],
+    },
+  ]);
   const [likerts, setLikerts] = useState<JSX.Element[]>([]);
   const [chartTitle, setChartTitle] = useState("My Likert Chart");
 
   const updateItems = useCallback(
     (item: Item, id: number) => {
       const tempArray = [...items];
+      // if (item.id === undefined) {
+      //   item.id = uuidv4();
+      // } else {
+      // }
       tempArray[id] = item;
       setItems([...tempArray]);
-      console.log(tempArray);
     },
     [items]
   );
 
   useEffect(() => {
     const tempArray = items.map((item) => {
-      return <Likert item={item} key={item.title} />;
+      if (item) {
+        return <Likert item={item} key={item.id} />;
+      }
     });
-    console.log("updating likerts");
 
     setLikerts([...tempArray]);
   }, [items]);
@@ -47,8 +101,16 @@ export default function Home() {
         </div>
         <h1>Likert Items</h1>
         <button className="btn">Add item</button>
-        <ItemInput updateItems={updateItems} id={0} />
-        <ItemInput updateItems={updateItems} id={1} />
+        {items.map((item, index) => {
+          return (
+            <ItemInput
+              updateItems={updateItems}
+              id={index}
+              item={item}
+              key={index}
+            />
+          );
+        })}
       </section>
       <section className="chartArea">
         <ChartCard>

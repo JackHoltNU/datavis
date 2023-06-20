@@ -8,8 +8,8 @@ interface Props {
 const Key = ({ blockpairs }: Props) => {
   return (
     <div className="key">
-      {blockpairs.map((pair) => {
-        return <KeyItem name={pair.label} colour={pair.colour} />;
+      {blockpairs.map((pair, index) => {
+        return <KeyItem name={pair.label} colour={pair.colour} key={index} />;
       })}
     </div>
   );

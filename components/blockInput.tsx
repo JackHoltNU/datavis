@@ -33,7 +33,6 @@ const BlockInput = ({
 
     if (itemIndex) {
       callback(blockpair, itemIndex);
-      console.log("change registered");
     } else {
       callback(blockpair.value as string);
     }

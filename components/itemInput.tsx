@@ -4,61 +4,25 @@ import { BlockPair, Item } from "./types/types";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
+  item: Item;
   updateItems: (item: Item, id: number) => void;
   id: number;
 }
 
-const ItemInput = ({ updateItems, id }: Props) => {
-  const [itemName, setItemName] = useState("Example");
+const ItemInput = ({ item, updateItems, id }: Props) => {
+  const [itemName, setItemName] = useState(item.title);
   const [blockNum, setBlockNum] = useState(7);
   //   const defaultBlock: BlockPair = {
   //     label: "Unlabelled",
   //     value: 0,
   //     colour: "CCCCCC",
   //   };
-  const [blockArray, setBlockArray] = useState<BlockPair[]>([
-    {
-      label: "Strongly Disagree",
-      value: 15,
-      colour: "#b71c1c",
-    },
-    {
-      label: "Disagree",
-      value: 15,
-      colour: "#d32f2f",
-    },
-    {
-      label: "Somewhat Disagree",
-      value: 15,
-      colour: "#f44336",
-    },
-    {
-      label: "Neutral",
-      value: 10,
-      colour: "#525252",
-    },
-    {
-      label: "Somewhat Agree",
-      value: 15,
-      colour: "#3f51b5",
-    },
-    {
-      label: "Agree",
-      value: 15,
-      colour: "#303f9f",
-    },
-    {
-      label: "Strongly Agree",
-      value: 15,
-      colour: "#1a237c",
-    },
-  ]);
+  const [blockArray, setBlockArray] = useState<BlockPair[]>(item.blockpairs);
 
   useEffect(() => {
     setBlockArray([
       ...blockArray.map((item) => {
         item.id = uuidv4();
-        console.log(item.id);
         return item;
       }),
     ]);
@@ -69,6 +33,7 @@ const ItemInput = ({ updateItems, id }: Props) => {
     const newItem: Item = {
       title: itemName,
       blockpairs: blockArray,
+      id: item.id,
     };
 
     updateItems(newItem, id);
@@ -82,6 +47,7 @@ const ItemInput = ({ updateItems, id }: Props) => {
     // console.log(`blockpair ${value}, num ${num}`);
 
     const tempArray = blockArray;
+    value.id = tempArray[num - 1].id;
     tempArray[num - 1] = value;
 
     setBlockArray([...tempArray]);
