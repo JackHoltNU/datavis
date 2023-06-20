@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BlockPair } from "./types/types";
+import { BlockPair, KeyItem } from "./types/types";
 import { v4 as uuidv4 } from "uuid";
 import { SwatchesPicker } from "react-color";
 
@@ -9,7 +9,7 @@ interface Props {
   colour: string | null;
   itemName?: string;
   itemIndex?: number;
-  callback: (value: BlockPair | string, optional?: number) => void;
+  callback: (value: BlockPair | string | KeyItem, optional?: number) => void;
 }
 
 const BlockInput = ({
@@ -62,13 +62,7 @@ const BlockInput = ({
           </div>
         </>
       )}
-      <input
-        className="data__input--blocklabel"
-        value={blockLabel}
-        onChange={(e) => {
-          setBlockLabel(e.target.value);
-        }}
-      />
+      <label className="data__input--blocklabel">{inputName}</label>
       <input
         className="data__input--blockinput"
         type="text"

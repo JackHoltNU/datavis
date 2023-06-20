@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import BlockInput from "./blockInput";
-import { BlockPair, Item } from "./types/types";
+import { BlockPair, Item, KeyItem, LikertKey } from "./types/types";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   item: Item;
+  likertKey: LikertKey;
   updateItems: (item: Item, id: number) => void;
   id: number;
 }
 
-const ItemInput = ({ item, updateItems, id }: Props) => {
+const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
   const [itemName, setItemName] = useState(item.title);
   const [blockNum, setBlockNum] = useState(7);
   //   const defaultBlock: BlockPair = {
@@ -53,13 +54,29 @@ const ItemInput = ({ item, updateItems, id }: Props) => {
     setBlockArray([...tempArray]);
   }, []);
 
+  const blockInputs = useMemo(() => {
+    return blockArray.map((blockpair, index) => {
+      const keyItem: KeyItem = likertKey.keyItems[index];
+      return (
+        <BlockInput
+          key={blockpair.id}
+          inputName={keyItem.name}
+          inputValue={blockpair.value}
+          colour={keyItem.colour}
+          itemIndex={index + 1}
+          callback={updateBlockValue}
+        />
+      );
+    });
+  }, [likertKey, blockArray]);
+
   const setItemTitle = useCallback((title: string) => {
     setItemName(title);
   }, []);
 
   return (
     <section className="data__input-section">
-      <div className="data__input--item">
+      <div className="data__input--box data__input--boxitem">
         <h2 className="data__input--item-title">Item {id + 1}</h2>
         <BlockInput
           inputName="Title"
@@ -68,18 +85,7 @@ const ItemInput = ({ item, updateItems, id }: Props) => {
           inputValue={itemName}
           callback={setItemTitle}
         />
-        {blockArray.map((blockpair, index) => {
-          return (
-            <BlockInput
-              key={blockpair.id}
-              inputName={blockpair.label}
-              inputValue={blockpair.value}
-              colour={blockpair.colour}
-              itemIndex={index + 1}
-              callback={updateBlockValue}
-            />
-          );
-        })}
+        {blockInputs}
       </div>
     </section>
   );

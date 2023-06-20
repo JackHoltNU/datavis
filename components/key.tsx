@@ -1,15 +1,21 @@
 import KeyItem from "./keyItem";
-import { BlockPair } from "./types/types";
+import { BlockPair, LikertKey } from "./types/types";
 
 interface Props {
-  blockpairs: BlockPair[];
+  likertKey: LikertKey;
 }
 
-const Key = ({ blockpairs }: Props) => {
+const Key = ({ likertKey }: Props) => {
   return (
     <div className="key">
-      {blockpairs.map((pair, index) => {
-        return <KeyItem name={pair.label} colour={pair.colour} key={index} />;
+      {likertKey.keyItems.map((keyItem) => {
+        return (
+          <KeyItem
+            name={keyItem.name}
+            colour={keyItem.colour}
+            key={keyItem.id}
+          />
+        );
       })}
     </div>
   );
