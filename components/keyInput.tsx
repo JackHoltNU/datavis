@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import BlockInput from "./blockInput";
-import { BlockPair, Item, LikertKey, KeyItem } from "./types/types";
-import { v4 as uuidv4 } from "uuid";
+import { LikertKey, KeyItem } from "./types/types";
 import KeyItemInput from "./keyItemInput";
 
 interface Props {

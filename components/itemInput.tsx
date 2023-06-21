@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import BlockInput from "./blockInput";
-import { BlockPair, Item, KeyItem, LikertKey } from "./types/types";
+import { Block, Item, KeyItem, LikertKey } from "./types/types";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
@@ -12,13 +12,7 @@ interface Props {
 
 const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
   const [itemName, setItemName] = useState(item.title);
-  const [blockNum, setBlockNum] = useState(7);
-  //   const defaultBlock: BlockPair = {
-  //     label: "Unlabelled",
-  //     value: 0,
-  //     colour: "CCCCCC",
-  //   };
-  const [blockArray, setBlockArray] = useState<BlockPair[]>(item.blockpairs);
+  const [blockArray, setBlockArray] = useState<Block[]>(item.blocks);
 
   useEffect(() => {
     setBlockArray([
@@ -33,14 +27,14 @@ const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
     // labels code still to be added
     const newItem: Item = {
       title: itemName,
-      blockpairs: blockArray,
+      blocks: blockArray,
       id: item.id,
     };
 
     updateItems(newItem, id);
   }, [blockArray, itemName, id]);
 
-  const updateBlockValue = useCallback((value: BlockPair, num) => {
+  const updateBlockValue = useCallback((value: Block, num) => {
     // to add validation of value
 
     // to add validation of total sum

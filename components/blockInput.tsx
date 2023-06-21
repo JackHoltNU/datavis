@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { BlockPair, KeyItem } from "./types/types";
-import { v4 as uuidv4 } from "uuid";
-import { SwatchesPicker } from "react-color";
+import { Block, KeyItem } from "./types/types";
 
 interface Props {
   inputName: string;
@@ -9,7 +7,7 @@ interface Props {
   colour: string | null;
   itemName?: string;
   itemIndex?: number;
-  callback: (value: BlockPair | string | KeyItem, optional?: number) => void;
+  callback: (value: Block | string | KeyItem, optional?: number) => void;
 }
 
 const BlockInput = ({
@@ -21,45 +19,24 @@ const BlockInput = ({
 }: Props) => {
   const [blockLabel, setBlockLabel] = useState(inputName);
   const [blockValue, setBlockValue] = useState(inputValue);
-  const [pairColour, setPairColour] = useState<string>(colour);
-  const [displayPicker, setDisplayPicker] = useState(false);
 
   useEffect(() => {
-    const blockpair: BlockPair = {
-      label: blockLabel,
+    const block: Block = {
       value: blockValue,
-      colour: pairColour,
     };
 
     if (itemIndex) {
-      callback(blockpair, itemIndex);
+      callback(block, itemIndex);
     } else {
-      callback(blockpair.value as string);
+      callback(block.value as string);
     }
-  }, [blockValue, blockLabel, pairColour]);
+  }, [blockValue, blockLabel]);
 
   return (
     <div className="data__input--block">
       {itemIndex && (
         <>
-          <div
-            className="swatch"
-            onMouseDown={() => setDisplayPicker(true)}
-            style={{ backgroundColor: pairColour }}
-          >
-            {displayPicker && (
-              <div
-                className="colorpicker"
-                onMouseLeave={() => {
-                  setDisplayPicker(false);
-                }}
-              >
-                <SwatchesPicker
-                  onChangeComplete={(color) => setPairColour(color.hex)}
-                />
-              </div>
-            )}
-          </div>
+          <div className="swatch" style={{ backgroundColor: colour }}></div>
         </>
       )}
       <label className="data__input--blocklabel">{inputName}</label>

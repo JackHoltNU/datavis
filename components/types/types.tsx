@@ -1,7 +1,7 @@
 type Item = {
   id: string;
   title: string;
-  blockpairs: BlockPair[];
+  blocks: Block[];
 };
 
 type LikertKey = {
@@ -14,11 +14,9 @@ type KeyItem = {
   colour: string;
 };
 
-type BlockPair = {
+type Block = {
   id?: string;
-  label: string;
   value: string | number;
-  colour: string;
 };
 
-export type { Item, LikertKey, KeyItem, BlockPair };
+export type { Item, LikertKey, KeyItem, Block };

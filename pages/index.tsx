@@ -13,47 +13,33 @@ export default function Home() {
     {
       title: "Example",
       id: uuidv4(),
-      blockpairs: [
+      blocks: [
         {
-          label: "Strongly Disagree",
           value: 15,
-          colour: "#b71c1c",
           id: uuidv4(),
         },
         {
-          label: "Disagree",
           value: 15,
-          colour: "#d32f2f",
           id: uuidv4(),
         },
         {
-          label: "Somewhat Disagree",
           value: 15,
-          colour: "#f44336",
           id: uuidv4(),
         },
         {
-          label: "Neutral",
           value: 10,
-          colour: "#525252",
           id: uuidv4(),
         },
         {
-          label: "Somewhat Agree",
           value: 15,
-          colour: "#3f51b5",
           id: uuidv4(),
         },
         {
-          label: "Agree",
           value: 15,
-          colour: "#303f9f",
           id: uuidv4(),
         },
         {
-          label: "Strongly Agree",
           value: 15,
-          colour: "#1a237c",
           id: uuidv4(),
         },
       ],
@@ -115,18 +101,20 @@ export default function Home() {
   );
 
   const updateKey = useCallback((newKey: LikertKey) => {
+    console.log(`Colour test: ${newKey.keyItems[0].colour}`);
+
     setKey(newKey);
   }, []);
 
   useEffect(() => {
     const tempArray = items.map((item) => {
       if (item) {
-        return <Likert item={item} key={item.id} />;
+        return <Likert likertKey={key} item={item} key={item.id} />;
       }
     });
 
     setLikerts([...tempArray]);
-  }, [items]);
+  }, [items, key]);
 
   return (
     <main className="main">
