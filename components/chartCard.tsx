@@ -14,6 +14,7 @@ const ComponentToPrint = React.forwardRef<HTMLInputElement, ChartCard>(
     </div>
   )
 );
+ComponentToPrint.displayName = "ComponentToPrint";
 
 const ChartCard = ({
   title,
