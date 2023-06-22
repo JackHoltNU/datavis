@@ -19,4 +19,12 @@ type Block = {
   value: string | number;
 };
 
-export type { Item, LikertKey, KeyItem, Block };
+type ChartCard = {
+  title: string;
+  subtitle: string;
+  items: Item[];
+  likertKey: LikertKey;
+  likerts: JSX.Element[];
+};
+
+export type { Item, LikertKey, KeyItem, Block, ChartCard };

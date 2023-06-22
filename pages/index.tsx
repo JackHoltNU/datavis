@@ -4,7 +4,11 @@ import Key from "../components/key";
 import { useCallback, useEffect, useRef, useState } from "react";
 import BlockInput from "../components/blockInput";
 import ItemInput from "../components/itemInput";
-import { Item, LikertKey } from "../components/types/types";
+import type {
+  Item,
+  LikertKey,
+  ChartCard as Chart,
+} from "../components/types/types";
 import { v4 as uuidv4 } from "uuid";
 import KeyInput from "../components/keyInput";
 
@@ -148,14 +152,20 @@ export default function Home() {
           })}
       </section>
       <section className="chartArea">
-        <ChartCard>
-          <h1>{chartTitle}</h1>
+        <ChartCard
+          title={chartTitle}
+          subtitle="test"
+          items={items}
+          likertKey={key}
+          likerts={likerts}
+        />
+        {/* <h1>{chartTitle}</h1>
           {items[0] && <Key likertKey={key} />}
           <h2>Subtitle to go here</h2>
           {likerts.map((likert) => {
             return likert;
-          })}
-        </ChartCard>
+          })} */}
+        {/* </ChartCard> */}
       </section>
     </main>
   );
