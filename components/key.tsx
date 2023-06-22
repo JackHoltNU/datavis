@@ -1,5 +1,5 @@
 import KeyItem from "./keyItem";
-import { BlockPair, LikertKey } from "./types/types";
+import { LikertKey } from "./types/types";
 
 interface Props {
   likertKey: LikertKey;
