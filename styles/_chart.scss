@@ -1,4 +1,10 @@
 .chartcard {
+  &__title {
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
   &__outer {
     display: flex;
     flex-direction: column;

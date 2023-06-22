@@ -71,7 +71,7 @@ const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
   return (
     <section className="data__input-section">
       <div className="data__input--box data__input--boxitem">
-        <h2 className="data__input--item-title">Item {id + 1}</h2>
+        <h2 className="data__input--item-title">{itemName}</h2>
         <BlockInput
           inputName="Title"
           colour={null}

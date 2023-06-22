@@ -5,7 +5,7 @@ import Key from "./key";
 const ComponentToPrint = React.forwardRef<HTMLInputElement, ChartCard>(
   ({ title, subtitle, items, likertKey, likerts }: ChartCard, ref) => (
     <div ref={ref} className="chartcard__inner">
-      <h1>{title}</h1>
+      <h1 className="chartcard__title">{title}</h1>
       {items[0] && <Key likertKey={likertKey} />}
       <h2>Subtitle to go here</h2>
       {likerts.map((likert) => {

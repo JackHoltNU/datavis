@@ -12,41 +12,43 @@ import type {
 import { v4 as uuidv4 } from "uuid";
 import KeyInput from "../components/keyInput";
 
+const defaultItemBlocks = [
+  {
+    value: 15,
+    id: uuidv4(),
+  },
+  {
+    value: 15,
+    id: uuidv4(),
+  },
+  {
+    value: 15,
+    id: uuidv4(),
+  },
+  {
+    value: 10,
+    id: uuidv4(),
+  },
+  {
+    value: 15,
+    id: uuidv4(),
+  },
+  {
+    value: 15,
+    id: uuidv4(),
+  },
+  {
+    value: 15,
+    id: uuidv4(),
+  },
+];
+
 export default function Home() {
   const [items, setItems] = useState<Item[]>([
     {
       title: "Example",
       id: uuidv4(),
-      blocks: [
-        {
-          value: 15,
-          id: uuidv4(),
-        },
-        {
-          value: 15,
-          id: uuidv4(),
-        },
-        {
-          value: 15,
-          id: uuidv4(),
-        },
-        {
-          value: 10,
-          id: uuidv4(),
-        },
-        {
-          value: 15,
-          id: uuidv4(),
-        },
-        {
-          value: 15,
-          id: uuidv4(),
-        },
-        {
-          value: 15,
-          id: uuidv4(),
-        },
-      ],
+      blocks: defaultItemBlocks,
     },
   ]);
   const [key, setKey] = useState<LikertKey>({
@@ -110,6 +112,16 @@ export default function Home() {
     setKey(newKey);
   }, []);
 
+  const addNewItem = useCallback(() => {
+    const tempItems = items;
+    tempItems.push({
+      id: uuidv4(),
+      title: `Item ${items.length + 1}`,
+      blocks: defaultItemBlocks,
+    });
+    setItems([...tempItems]);
+  }, [items]);
+
   useEffect(() => {
     const tempArray = items.map((item) => {
       if (item) {
@@ -123,21 +135,36 @@ export default function Home() {
   return (
     <main className="main">
       <section className="sidebar">
-        <div className="chartSetup">
+        <div className="chartsetup">
           <h1>Chart Setup</h1>
-          <label>Chart Title</label>
-          <input
-            type="text"
-            className="chartSetupTitle"
-            value={chartTitle}
-            onChange={(e) => {
-              setChartTitle(e.target.value);
-            }}
-          />
+          <div className="chartsetup__pair">
+            <label>Chart Title</label>
+            <input
+              type="text"
+              className="chartsetup__title"
+              value={chartTitle}
+              onChange={(e) => {
+                setChartTitle(e.target.value);
+              }}
+            />
+          </div>
+          <div className="chartsetup__pair">
+            <label>Title Font Size</label>
+            <input
+              type="text"
+              className="chartsetup__fontsize"
+              value=""
+              onChange={(e) => {
+                setChartTitle(e.target.value);
+              }}
+            />
+          </div>
         </div>
         <KeyInput likertKey={key} updateKey={updateKey} />
         <h2>Likert Items</h2>
-        <button className="btn">Add item</button>
+        <button className="btn" onClick={addNewItem}>
+          Add item
+        </button>
         {key.keyItems &&
           items.map((item, index) => {
             return (
