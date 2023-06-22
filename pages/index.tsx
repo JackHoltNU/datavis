@@ -159,13 +159,6 @@ export default function Home() {
           likertKey={key}
           likerts={likerts}
         />
-        {/* <h1>{chartTitle}</h1>
-          {items[0] && <Key likertKey={key} />}
-          <h2>Subtitle to go here</h2>
-          {likerts.map((likert) => {
-            return likert;
-          })} */}
-        {/* </ChartCard> */}
       </section>
     </main>
   );
