@@ -67,16 +67,29 @@
   border-left: solid 3px black;
   border-right: solid 3px black;
   display: flex;
-  height: 30px;
+  height: 3rem;
   justify-content: center;
   /* margin: 10px 0; */
   width: 80%;
 }
 
+@keyframes likertenter {
+  0% {
+    transform: translateY(-3rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .likert__inner {
+  animation-name: likertenter;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
   display: flex;
   font-size: 1.2rem;
   height: 100%;
+  // transition: all 0.5s ease-out;
   width: 100%;
 }
 
@@ -98,8 +111,8 @@
 }
 
 .likert__centreline {
-  border-right: 2px solid black;
-  width: 50%;
+  border-right: 0.2rem solid black;
+  width: calc(50% + 0.1rem);
   height: 7px;
 }
 
