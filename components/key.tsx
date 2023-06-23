@@ -9,7 +9,13 @@ const Key = ({ likertKey }: Props) => {
   return (
     <div className="key">
       {likertKey.keyItems.map((keyItem) => {
-        return <KeyItemView keyItem={keyItem} fontSize={likertKey.fontSize} />;
+        return (
+          <KeyItemView
+            keyItem={keyItem}
+            fontSize={likertKey.fontSize}
+            key={keyItem.id}
+          />
+        );
       })}
     </div>
   );
