@@ -8,21 +8,57 @@ interface Props {
 }
 
 const KeyInput = ({ likertKey, updateKey }: Props) => {
-  const updateKeyItem = useCallback((value: KeyItem, num) => {
-    const tempKeyItems = likertKey.keyItems;
-    tempKeyItems[num] = value;
+  const [fontSize, setFontSize] = useState(likertKey.fontSize);
+  const updateKeyItem = useCallback(
+    (value: KeyItem, num) => {
+      const tempKeyItems = likertKey.keyItems;
+      tempKeyItems[num] = value;
 
+      const newKey: LikertKey = {
+        keyItems: [...tempKeyItems],
+        fontSize: fontSize,
+      };
+
+      updateKey(newKey);
+    },
+    [fontSize]
+  );
+
+  useEffect(() => {
     const newKey: LikertKey = {
-      keyItems: [...tempKeyItems],
+      keyItems: likertKey.keyItems,
+      fontSize: fontSize,
     };
-
     updateKey(newKey);
-  }, []);
+  }, [fontSize]);
 
   return (
     <section className="data__input-section">
       <div className="data__input--box data__input--boxkey">
         <h2 className="data__input--item-title">Key</h2>
+        <div className="chartsetup__pair">
+          <label>Key Font Size</label>
+          <div className="incrementpair">
+            <button
+              className="incrementpair__btn"
+              onClick={() => {
+                setFontSize(fontSize - 1);
+              }}
+            >
+              -
+            </button>
+            <p className="chartsetup__fontsize">{fontSize}</p>
+            <button
+              className="incrementpair__btn"
+              onClick={() => {
+                setFontSize(fontSize + 1);
+              }}
+            >
+              +
+            </button>
+          </div>
+        </div>
+
         {likertKey.keyItems.map((keyItem, index) => {
           return (
             <KeyItemInput

@@ -6,6 +6,7 @@ type Item = {
 
 type LikertKey = {
   keyItems: KeyItem[];
+  fontSize: number;
 };
 
 type KeyItem = {
@@ -21,6 +22,7 @@ type Block = {
 
 type ChartCard = {
   title: string;
+  titleFontSize: number;
   subtitle: string;
   items: Item[];
   likertKey: LikertKey;

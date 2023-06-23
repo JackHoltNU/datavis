@@ -52,6 +52,7 @@ export default function Home() {
     },
   ]);
   const [key, setKey] = useState<LikertKey>({
+    fontSize: 12,
     keyItems: [
       {
         name: "Strongly Disagree",
@@ -92,6 +93,7 @@ export default function Home() {
   });
   const [likerts, setLikerts] = useState<JSX.Element[]>([]);
   const [chartTitle, setChartTitle] = useState("My Likert Chart");
+  const [chartTitleFontSize, setChartTitleFontSize] = useState(20);
 
   const updateItems = useCallback(
     (item: Item, id: number) => {
@@ -150,17 +152,29 @@ export default function Home() {
           </div>
           <div className="chartsetup__pair">
             <label>Title Font Size</label>
-            <input
-              type="text"
-              className="chartsetup__fontsize"
-              value=""
-              onChange={(e) => {
-                setChartTitle(e.target.value);
-              }}
-            />
+            <div className="incrementpair">
+              <button
+                className="incrementpair__btn"
+                onClick={() => {
+                  setChartTitleFontSize(chartTitleFontSize - 1);
+                }}
+              >
+                -
+              </button>
+              <p className="chartsetup__fontsize">{chartTitleFontSize}</p>
+              <button
+                className="incrementpair__btn"
+                onClick={() => {
+                  setChartTitleFontSize(chartTitleFontSize + 1);
+                }}
+              >
+                +
+              </button>
+            </div>
           </div>
         </div>
-        <KeyInput likertKey={key} updateKey={updateKey} />
+        {key.keyItems && <KeyInput likertKey={key} updateKey={updateKey} />}
+
         <h2>Likert Items</h2>
         <button className="btn" onClick={addNewItem}>
           Add item
@@ -181,7 +195,8 @@ export default function Home() {
       <section className="chartArea">
         <ChartCard
           title={chartTitle}
-          subtitle="test"
+          titleFontSize={chartTitleFontSize}
+          subtitle=""
           items={items}
           likertKey={key}
           likerts={likerts}

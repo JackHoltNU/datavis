@@ -71,14 +71,18 @@ const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
   return (
     <section className="data__input-section">
       <div className="data__input--box data__input--boxitem">
-        <h2 className="data__input--item-title">{itemName}</h2>
-        <BlockInput
-          inputName="Title"
-          colour={null}
-          itemName={itemName}
-          inputValue={itemName}
-          callback={setItemTitle}
-        />
+        <h2 className="data__input--itemtitle">{itemName}</h2>
+        <div className="data__input--settitle">
+          <label className="data__input--textlabel">Label</label>
+          <input
+            className="data__input--textinput"
+            type="text"
+            value={itemName}
+            onChange={(e) => {
+              setItemTitle(e.target.value);
+            }}
+          />
+        </div>
         {blockInputs}
       </div>
     </section>

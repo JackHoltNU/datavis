@@ -1,4 +1,4 @@
-import KeyItem from "./keyItem";
+import KeyItemView from "./keyItemView";
 import { LikertKey } from "./types/types";
 
 interface Props {
@@ -9,13 +9,7 @@ const Key = ({ likertKey }: Props) => {
   return (
     <div className="key">
       {likertKey.keyItems.map((keyItem) => {
-        return (
-          <KeyItem
-            name={keyItem.name}
-            colour={keyItem.colour}
-            key={keyItem.id}
-          />
-        );
+        return <KeyItemView keyItem={keyItem} fontSize={likertKey.fontSize} />;
       })}
     </div>
   );
