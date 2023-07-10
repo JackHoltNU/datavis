@@ -37,7 +37,7 @@ const KeyInput = ({ likertKey, updateKey }: Props) => {
       <div className="data__input--box data__input--boxkey">
         <h2 className="data__input--item-title">Key</h2>
         <div className="chartsetup__pair">
-          <label>Key Font Size</label>
+          <label className="chartsetup__pair--label">Key Font Size</label>
           <div className="incrementpair">
             <button
               className="incrementpair__btn"

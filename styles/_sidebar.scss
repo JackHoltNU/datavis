@@ -7,24 +7,40 @@
     justify-content: space-between;
     margin-bottom: 0.5rem;
     width: 100%;
+
+    &--label {
+      @media (max-width: $bp-small) {
+        font-size: 4rem;
+      }
+    }
   }
   &__title {
     background-color: $color-light;
     border: none;
     width: 60%;
     text-align: right;
+
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+    }
   }
   &__fontsize {
     width: 2rem;
     text-align: center;
+
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+      width: 6rem;
+    }
   }
 
-  @media (max-width: $bp-smallest) {
+  @media (max-width: $bp-small) {
     font-size: 4rem;
   }
 }
 
 .incrementpair {
+  align-items: center;
   display: flex;
   justify-content: space-between;
   width: 20%;
@@ -34,8 +50,10 @@
     border: none;
     color: $color-light;
     font-size: 1.4rem;
-    @media (max-width: $bp-smallest) {
+    @media (max-width: $bp-small) {
       font-size: 4rem;
+      height: 6rem;
+      width: 6rem;
     }
   }
 
@@ -78,12 +96,20 @@ item {
   margin-bottom: 1rem;
   margin-top: 0;
   width: 100%;
+
+  @media (max-width: $bp-small) {
+    font-size: 4rem;
+  }
 }
 
 .data__input--block {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: $bp-small) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .data__input--blocklabel {
@@ -93,6 +119,10 @@ item {
   font-size: 1.2rem;
   height: 2.5rem;
   margin-right: 5px;
+
+  @media (max-width: $bp-small) {
+    font-size: 4rem;
+  }
 }
 
 .data__input--blockinput {
@@ -104,6 +134,12 @@ item {
   margin: 0.5rem;
   padding-right: 0.4rem;
   text-align: center;
+
+  @media (max-width: $bp-small) {
+    font-size: 4rem;
+    width: 8rem;
+    height: 4.5rem;
+  }
 }
 
 .data__input--keyItemInput {
@@ -113,16 +149,30 @@ item {
   width: 20rem;
   height: 2rem;
   margin: 0.4rem;
+
+  @media (max-width: $bp-small) {
+    font-size: 4rem;
+    width: 45rem;
+    height: 4.5rem;
+  }
 }
 
 .data__input--settitle {
   align-items: center;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: $bp-small) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .data__input--textlabel {
   font-size: 1.2rem;
+
+  @media (max-width: $bp-small) {
+    font-size: 4rem;
+  }
 }
 
 .data__input--textinput {
@@ -134,6 +184,12 @@ item {
   margin: 0.5rem;
   padding-right: 0.4rem;
   text-align: right;
+
+  @media (max-width: $bp-small) {
+    font-size: 4rem;
+    width: 45rem;
+    height: 4.5rem;
+  }
 }
 
 .swatch {
@@ -141,7 +197,7 @@ item {
   height: 1.5rem;
   width: 1.5rem;
 
-  @media (max-width: $bp-smallest) {
+  @media (max-width: $bp-small) {
     height: 4.5rem;
     width: 4.5rem;
   }

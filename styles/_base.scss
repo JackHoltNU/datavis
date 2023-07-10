@@ -38,7 +38,7 @@ html {
   width: 100vw;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-  @media (max-width: $bp-smallest) {
+  @media (max-width: $bp-small) {
     flex-direction: column-reverse;
     align-items: center;
   }
@@ -51,7 +51,7 @@ html {
   min-width: calc($min-width - $sidebar-width);
   padding-right: 4rem;
   width: calc(100vw - $sidebar-width);
-  @media (max-width: $bp-smallest) {
+  @media (max-width: $bp-small) {
     width: 100%;
     padding-right: 0;
   }
@@ -68,7 +68,7 @@ html {
   padding: 0 2rem;
   width: $sidebar-width;
 
-  @media (max-width: $bp-smallest) {
+  @media (max-width: $bp-small) {
     width: 95%;
   }
 }
@@ -77,16 +77,16 @@ h1 {
   font-size: 2rem;
   text-align: center;
 
-  @media (max-width: $bp-smallest) {
-    font-size: 5rem;
+  @media (max-width: $bp-small) {
+    font-size: 6rem;
   }
 }
 
 h2 {
   font-size: 1.5rem;
 
-  @media (max-width: $bp-smallest) {
-    font-size: 3rem;
+  @media (max-width: $bp-small) {
+    font-size: 5rem;
   }
 }
 
@@ -98,6 +98,12 @@ h2 {
   height: 30px;
   margin: 10px 0;
   width: 100%;
+
+  @media (max-width: $bp-small) {
+    font-size: 4rem;
+    height: 6rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .btn:hover {
