@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Item, LikertKey, ChartCard } from "./types/types";
+import { ChartCard } from "./types/types";
 import Key from "./key";
 
 const ComponentToPrint = React.forwardRef<HTMLInputElement, ChartCard>(
@@ -40,7 +40,9 @@ const ChartCard = ({
             const { exportComponentAsPNG } = await import(
               "react-component-export-image"
             );
-            exportComponentAsPNG(componentRef);
+            setTimeout(() => {
+              exportComponentAsPNG(componentRef);
+            }, 1000);
           }}
         >
           Export As PNG
