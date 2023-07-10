@@ -48,7 +48,7 @@ export default function Home() {
     {
       title: "Example",
       id: uuidv4(),
-      blocks: defaultItemBlocks,
+      blocks: defaultItemBlocks.slice(),
     },
   ]);
   const [key, setKey] = useState<LikertKey>({
@@ -119,7 +119,7 @@ export default function Home() {
     tempItems.push({
       id: uuidv4(),
       title: `Item ${items.length + 1}`,
-      blocks: defaultItemBlocks,
+      blocks: defaultItemBlocks.slice(),
     });
     setItems([...tempItems]);
   }, [items]);
