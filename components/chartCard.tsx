@@ -40,9 +40,7 @@ const ChartCard = ({
             const { exportComponentAsPNG } = await import(
               "react-component-export-image"
             );
-            setTimeout(() => {
-              exportComponentAsPNG(componentRef);
-            }, 1000);
+            exportComponentAsPNG(componentRef);
           }}
         >
           Export As PNG
