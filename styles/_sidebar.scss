@@ -18,6 +18,10 @@
     width: 2rem;
     text-align: center;
   }
+
+  @media (max-width: $bp-smallest) {
+    font-size: 4rem;
+  }
 }
 
 .incrementpair {
@@ -30,6 +34,9 @@
     border: none;
     color: $color-light;
     font-size: 1.4rem;
+    @media (max-width: $bp-smallest) {
+      font-size: 4rem;
+    }
   }
 
   &__btn:hover {
@@ -47,9 +54,6 @@
   margin-bottom: 2.5rem;
   padding: 10px;
   width: 100%;
-
-  &item {
-  }
 
   &key {
     margin-top: 2.5rem;
@@ -136,6 +140,11 @@ item {
   border-radius: 50%;
   height: 1.5rem;
   width: 1.5rem;
+
+  @media (max-width: $bp-smallest) {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
 }
 
 .swatch:hover {

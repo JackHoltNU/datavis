@@ -37,6 +37,11 @@ html {
   min-width: $min-width;
   width: 100vw;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  @media (max-width: $bp-smallest) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
 
 .chartArea {
@@ -46,6 +51,10 @@ html {
   min-width: calc($min-width - $sidebar-width);
   padding-right: 4rem;
   width: calc(100vw - $sidebar-width);
+  @media (max-width: $bp-smallest) {
+    width: 100%;
+    padding-right: 0;
+  }
 }
 
 .sidebar {
@@ -58,15 +67,27 @@ html {
   margin: 1rem;
   padding: 0 2rem;
   width: $sidebar-width;
+
+  @media (max-width: $bp-smallest) {
+    width: 95%;
+  }
 }
 
 h1 {
   font-size: 2rem;
   text-align: center;
+
+  @media (max-width: $bp-smallest) {
+    font-size: 5rem;
+  }
 }
 
 h2 {
   font-size: 1.5rem;
+
+  @media (max-width: $bp-smallest) {
+    font-size: 3rem;
+  }
 }
 
 .btn {
