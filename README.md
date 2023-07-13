@@ -3,6 +3,7 @@
 A tool for displaying custom charts to intuitively show distributions of responses to Likert data. To use, adjust titles, font-sizes, colours and labels to your taste. Add your data (using percentages, not raw values, making sure to include decimal places). Add multiple Likert items if required. Click the export buttons to produce png or jpg images of your chart.
 
 Live version: https://likertbuilder.vercel.app/
+
 To start in dev mode: npm run dev
 
 Likert Builder is still under development. The following is a list of planned additions/changes:
