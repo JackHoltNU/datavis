@@ -6,7 +6,7 @@ interface Props {
   reorderItems: (item: Item, oldPosition: number, newPosition: number) => void;
 }
 
-const dropZone = ({ position, reorderItems }: Props) => {
+const DropZone = ({ position, reorderItems }: Props) => {
   const [showDropArea, setShowDropArea] = useState(false);
 
   const dropReady = (event: React.DragEvent<HTMLDivElement>) => {
@@ -43,4 +43,4 @@ const dropZone = ({ position, reorderItems }: Props) => {
   );
 };
 
-export default dropZone;
+export default DropZone;
