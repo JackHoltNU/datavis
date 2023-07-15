@@ -11,6 +11,7 @@ import type {
 } from "../components/types/types";
 import { v4 as uuidv4 } from "uuid";
 import KeyInput from "../components/keyInput";
+import DropZone from "../components/dropZone";
 
 const defaultItemBlocks = [
   {
@@ -96,13 +97,9 @@ export default function Home() {
   const [chartTitleFontSize, setChartTitleFontSize] = useState(20);
 
   const updateItems = useCallback(
-    (item: Item, id: number) => {
+    (item: Item, position: number) => {
       const tempArray = [...items];
-      // if (item.id === undefined) {
-      //   item.id = uuidv4();
-      // } else {
-      // }
-      tempArray[id] = item;
+      tempArray[position] = item;
       setItems([...tempArray]);
     },
     [items]
@@ -123,6 +120,16 @@ export default function Home() {
     });
     setItems([...tempItems]);
   }, [items]);
+
+  const reorderItems = useCallback(
+    (item: Item, oldPosition: number, newPosition: number) => {
+      const tempItems = items;
+      tempItems.splice(oldPosition, 1);
+      tempItems.splice(newPosition, 0, item);
+      setItems([...tempItems]);
+    },
+    [items]
+  );
 
   useEffect(() => {
     const tempArray = items.map((item) => {
@@ -179,16 +186,21 @@ export default function Home() {
         <button className="btn" onClick={addNewItem}>
           Add item
         </button>
+        <DropZone position={0} reorderItems={reorderItems} />
         {key.keyItems &&
           items.map((item, index) => {
             return (
-              <ItemInput
-                updateItems={updateItems}
-                id={index}
-                item={item}
-                likertKey={key}
-                key={index}
-              />
+              <>
+                <ItemInput
+                  updateItems={updateItems}
+                  id={item.id}
+                  item={item}
+                  likertKey={key}
+                  key={item.id}
+                  position={index}
+                />
+                <DropZone position={index + 1} reorderItems={reorderItems} />
+              </>
             );
           })}
       </section>

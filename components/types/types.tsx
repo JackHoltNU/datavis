@@ -4,6 +4,11 @@ type Item = {
   blocks: Block[];
 };
 
+type DragData = {
+  item: Item;
+  position: number;
+};
+
 type LikertKey = {
   keyItems: KeyItem[];
   fontSize: number;
@@ -29,4 +34,4 @@ type ChartCard = {
   likerts: JSX.Element[];
 };
 
-export type { Item, LikertKey, KeyItem, Block, ChartCard };
+export type { Item, DragData, LikertKey, KeyItem, Block, ChartCard };

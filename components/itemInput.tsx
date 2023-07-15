@@ -1,16 +1,17 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import BlockInput from "./blockInput";
-import { Block, Item, KeyItem, LikertKey } from "./types/types";
+import { Block, DragData, Item, KeyItem, LikertKey } from "./types/types";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   item: Item;
   likertKey: LikertKey;
   updateItems: (item: Item, id: number) => void;
-  id: number;
+  id: string;
+  position: number;
 }
 
-const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
+const ItemInput = ({ item, likertKey, updateItems, id, position }: Props) => {
   const [itemName, setItemName] = useState(item.title);
   const [blockArray, setBlockArray] = useState<Block[]>(item.blocks);
 
@@ -31,7 +32,7 @@ const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
       id: item.id,
     };
 
-    updateItems(newItem, id);
+    updateItems(newItem, position);
   }, [blockArray, itemName, id]);
 
   const updateBlockValue = useCallback((value: Block, num) => {
@@ -47,6 +48,15 @@ const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
 
     setBlockArray([...tempArray]);
   }, []);
+
+  const onDrag = (event: React.DragEvent<HTMLElement>) => {
+    const dragData: DragData = {
+      item,
+      position,
+    };
+    const dragJson = JSON.stringify(dragData);
+    event.dataTransfer.setData("text/plain", dragJson);
+  };
 
   const blockInputs = useMemo(() => {
     return blockArray.map((blockpair, index) => {
@@ -71,7 +81,13 @@ const ItemInput = ({ item, likertKey, updateItems, id }: Props) => {
   return (
     <section className="data__input-section">
       <div className="data__input--box data__input--boxitem">
-        <h2 className="data__input--itemtitle">{itemName}</h2>
+        <h2
+          className="data__input--itemtitle"
+          draggable
+          onDragStart={(event) => onDrag(event)}
+        >
+          {itemName}
+        </h2>
         <div className="data__input--settitle">
           <label className="data__input--textlabel">Label</label>
           <input
