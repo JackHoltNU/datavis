@@ -2,18 +2,36 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import BlockInput from "./blockInput";
 import { Block, DragData, Item, KeyItem, LikertKey } from "./types/types";
 import { v4 as uuidv4 } from "uuid";
+import {
+  faGrip,
+  faWindowMinimize,
+  faWindowMaximize,
+  faTrashCan,
+  IconDefinition,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
   item: Item;
   likertKey: LikertKey;
   updateItems: (item: Item, id: number) => void;
+  deleteItem: (position: number) => void;
   id: string;
   position: number;
 }
 
-const ItemInput = ({ item, likertKey, updateItems, id, position }: Props) => {
+const ItemInput = ({
+  item,
+  likertKey,
+  updateItems,
+  deleteItem,
+  id,
+  position,
+}: Props) => {
   const [itemName, setItemName] = useState(item.title);
   const [blockArray, setBlockArray] = useState<Block[]>(item.blocks);
+  const [collapseIcon, setCollapseIcon] =
+    useState<IconDefinition>(faWindowMinimize);
 
   useEffect(() => {
     setBlockArray([
@@ -58,6 +76,14 @@ const ItemInput = ({ item, likertKey, updateItems, id, position }: Props) => {
     event.dataTransfer.setData("text/plain", dragJson);
   };
 
+  const toggleAngleIcon = () => {
+    if (collapseIcon === faWindowMinimize) {
+      setCollapseIcon(faWindowMaximize);
+    } else {
+      setCollapseIcon(faWindowMinimize);
+    }
+  };
+
   const blockInputs = useMemo(() => {
     return blockArray.map((blockpair, index) => {
       const keyItem: KeyItem = likertKey.keyItems[index];
@@ -79,15 +105,31 @@ const ItemInput = ({ item, likertKey, updateItems, id, position }: Props) => {
   }, []);
 
   return (
-    <section className="data__input-section">
+    <section className="data__input--section">
       <div className="data__input--box data__input--boxitem">
-        <h2
-          className="data__input--itemtitle"
+        <div
+          className="data__input--header"
           draggable
           onDragStart={(event) => onDrag(event)}
         >
-          {itemName}
-        </h2>
+          <div className="data__input--cornericon">
+            <FontAwesomeIcon
+              icon={faTrashCan}
+              className="data__input--icon"
+              onClick={() => deleteItem(position)}
+            />
+          </div>
+          <h2
+            className="data__input--itemtitle"
+            draggable
+            onDragStart={(event) => onDrag(event)}
+          >
+            <FontAwesomeIcon icon={faGrip} className="data__input--icon" />
+            {itemName}
+          </h2>
+          <div className="data__input--cornericon"></div>
+        </div>
+
         <div className="data__input--settitle">
           <label className="data__input--textlabel">Label</label>
           <input

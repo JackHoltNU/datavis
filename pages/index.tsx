@@ -131,6 +131,15 @@ export default function Home() {
     [items]
   );
 
+  const deleteItem = useCallback(
+    (position: number) => {
+      const tempItems = items;
+      tempItems.splice(position, 1);
+      setItems([...tempItems]);
+    },
+    [items]
+  );
+
   useEffect(() => {
     const tempArray = items.map((item) => {
       if (item) {
@@ -193,6 +202,7 @@ export default function Home() {
               <>
                 <ItemInput
                   updateItems={updateItems}
+                  deleteItem={deleteItem}
                   id={item.id}
                   item={item}
                   likertKey={key}

@@ -33,7 +33,7 @@ const KeyInput = ({ likertKey, updateKey }: Props) => {
   }, [fontSize]);
 
   return (
-    <section className="data__input-section">
+    <section className="data__input--section">
       <div className="data__input--box data__input--boxkey">
         <h2 className="data__input--item-title">Key</h2>
         <div className="chartsetup__pair">
