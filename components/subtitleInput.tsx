@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import BlockInput from "./blockInput";
-import { Block, DragData, Item, KeyItem, LikertKey } from "./types/types";
-import { v4 as uuidv4 } from "uuid";
+import { useCallback, useEffect, useState } from "react";
+import { DragData, Item, Subtitle } from "./types/types";
 import {
   faGrip,
   faAngleRight,
@@ -12,67 +10,40 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
-  item: Item;
-  likertKey: LikertKey;
-  updateItems: (item: Item, id: number) => void;
+  subtitle: Subtitle;
+  updateItems: (item: Item | Subtitle, id: number) => void;
   deleteItem: (position: number) => void;
   position: number;
 }
 
-const ItemInput = ({
-  item,
-  likertKey,
+const SubtitleInput = ({
+  subtitle,
   updateItems,
   deleteItem,
   position,
 }: Props) => {
-  const [itemName, setItemName] = useState(item.title);
-  const [blockArray, setBlockArray] = useState<Block[]>(item.blocks);
+  const [itemName, setItemName] = useState(subtitle.title);
   const [collapseIcon, setCollapseIcon] = useState<IconDefinition>(
-    item.collapsedInput ? faAngleRight : faAngleDown
+    subtitle.collapsedInput ? faAngleRight : faAngleDown
   );
-  const [collapsed, setCollapsed] = useState(item.collapsedInput);
+  const [collapsed, setCollapsed] = useState(subtitle.collapsedInput);
   const [grabbed, setGrabbed] = useState(false);
 
   useEffect(() => {
-    setBlockArray([
-      ...blockArray.map((item) => {
-        item.id = uuidv4();
-        return item;
-      }),
-    ]);
-  }, []);
-
-  useEffect(() => {
     // labels code still to be added
-    const newItem: Item = {
+    const newSubtitle: Subtitle = {
       title: itemName,
-      blocks: blockArray,
-      id: item.id,
+      id: subtitle.id,
       collapsedInput: collapsed,
     };
 
-    updateItems(newItem, position);
-  }, [blockArray, itemName, item.id, collapsed]);
-
-  const updateBlockValue = useCallback((value: Block, num) => {
-    // to add validation of value
-
-    // to add validation of total sum
-
-    // console.log(`blockpair ${value}, num ${num}`);
-
-    const tempArray = blockArray;
-    value.id = tempArray[num - 1].id;
-    tempArray[num - 1] = value;
-
-    setBlockArray([...tempArray]);
-  }, []);
+    updateItems(newSubtitle, position);
+  }, [itemName, subtitle.id, collapsed]);
 
   const onDrag = (event: React.DragEvent<HTMLElement>) => {
     setGrabbed(true);
     const dragData: DragData = {
-      item,
+      item: subtitle,
       position,
     };
     const dragJson = JSON.stringify(dragData);
@@ -87,22 +58,6 @@ const ItemInput = ({
     }
   };
 
-  const blockInputs = useMemo(() => {
-    return blockArray.map((blockpair, index) => {
-      const keyItem: KeyItem = likertKey.keyItems[index];
-      return (
-        <BlockInput
-          key={blockpair.id}
-          inputName={keyItem.name}
-          inputValue={blockpair.value}
-          colour={keyItem.colour}
-          itemIndex={index + 1}
-          callback={updateBlockValue}
-        />
-      );
-    });
-  }, [likertKey, blockArray]);
-
   const setItemTitle = useCallback((title: string) => {
     setItemName(title);
   }, []);
@@ -112,8 +67,8 @@ const ItemInput = ({
       <div
         className={
           grabbed
-            ? "data__input--box data__input--box-blue grabbed"
-            : "data__input--box data__input--box-blue"
+            ? "data__input--box data__input--box-green grabbed"
+            : "data__input--box data__input--box-green"
         }
       >
         <div
@@ -161,7 +116,6 @@ const ItemInput = ({
                 }}
               />
             </div>
-            {blockInputs}
           </div>
         )}
       </div>
@@ -169,4 +123,4 @@ const ItemInput = ({
   );
 };
 
-export default ItemInput;
+export default SubtitleInput;

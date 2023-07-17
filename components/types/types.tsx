@@ -5,8 +5,14 @@ type Item = {
   collapsedInput: boolean;
 };
 
+type Subtitle = {
+  id: string;
+  title: string;
+  collapsedInput: boolean;
+};
+
 type DragData = {
-  item: Item;
+  item: Item | Subtitle;
   position: number;
 };
 
@@ -30,9 +36,9 @@ type ChartCard = {
   title: string;
   titleFontSize: number;
   subtitle: string;
-  items: Item[];
+  items: Array<Item | Subtitle>;
   likertKey: LikertKey;
   likerts: JSX.Element[];
 };
 
-export type { Item, DragData, LikertKey, KeyItem, Block, ChartCard };
+export type { Item, Subtitle, DragData, LikertKey, KeyItem, Block, ChartCard };

@@ -77,6 +77,15 @@
   }
 }
 
+.data__input--btn {
+  &-blue {
+    background-color: rgb(73, 140, 255);
+  }
+  &-green {
+    background-color: rgb(42, 183, 75);
+  }
+}
+
 .data__input--box {
   background-color: rgb(60, 60, 60);
   border-radius: 0.5rem;
@@ -86,6 +95,12 @@
   width: 100%;
   transition: all 0.5s ease;
 
+  &-blue {
+    border-top: solid 0.4rem rgb(73, 140, 255);
+  }
+  &-green {
+    border-top: solid 0.4rem rgb(42, 183, 75);
+  }
   &key {
     margin-top: 2.5rem;
   }
@@ -244,6 +259,13 @@
     height: 4.5rem;
     width: 4.5rem;
   }
+}
+
+.addButtons {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
 }
 
 .swatch:hover {

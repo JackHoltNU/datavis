@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { DragData, Item } from "./types/types";
+import { DragData, Item, Subtitle } from "./types/types";
 
 interface Props {
   position: number;
-  reorderItems: (item: Item, oldPosition: number, newPosition: number) => void;
+  reorderItems: (
+    item: Item | Subtitle,
+    oldPosition: number,
+    newPosition: number
+  ) => void;
 }
 
 const DropZone = ({ position, reorderItems }: Props) => {

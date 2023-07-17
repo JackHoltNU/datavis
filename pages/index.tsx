@@ -1,17 +1,17 @@
 import ChartCard from "../components/chartCard";
 import Likert from "../components/likert";
-import Key from "../components/key";
 import { useCallback, useEffect, useRef, useState } from "react";
-import BlockInput from "../components/blockInput";
 import ItemInput from "../components/itemInput";
 import type {
   Item,
   LikertKey,
   ChartCard as Chart,
+  Subtitle,
 } from "../components/types/types";
 import { v4 as uuidv4 } from "uuid";
 import KeyInput from "../components/keyInput";
 import DropZone from "../components/dropZone";
+import SubtitleInput from "../components/subtitleInput";
 
 const defaultItemBlocks = [
   {
@@ -44,8 +44,10 @@ const defaultItemBlocks = [
   },
 ];
 
+const isItem = (obj: any): obj is Item => obj && obj.blocks;
+
 export default function Home() {
-  const [items, setItems] = useState<Item[]>([
+  const [items, setItems] = useState<Array<Item | Subtitle>>([
     {
       title: "Example",
       id: uuidv4(),
@@ -98,7 +100,7 @@ export default function Home() {
   const [chartTitleFontSize, setChartTitleFontSize] = useState(20);
 
   const updateItems = useCallback(
-    (item: Item, position: number) => {
+    (item: Item | Subtitle, position: number) => {
       const tempArray = [...items];
       tempArray[position] = item;
       setItems([...tempArray]);
@@ -123,8 +125,18 @@ export default function Home() {
     setItems([...tempItems]);
   }, [items]);
 
+  const addNewSubtitle = useCallback(() => {
+    const tempItems = items;
+    tempItems.push({
+      id: uuidv4(),
+      title: "Test",
+      collapsedInput: false,
+    });
+    setItems([...tempItems]);
+  }, [items]);
+
   const reorderItems = useCallback(
-    (item: Item, oldPosition: number, newPosition: number) => {
+    (item: Item | Subtitle, oldPosition: number, newPosition: number) => {
       const tempItems = items;
       tempItems.splice(oldPosition, 1);
       tempItems.splice(newPosition, 0, item);
@@ -145,7 +157,11 @@ export default function Home() {
   useEffect(() => {
     const tempArray = items.map((item) => {
       if (item) {
-        return <Likert likertKey={key} item={item} key={item.id} />;
+        if (isItem(item)) {
+          return <Likert likertKey={key} item={item} key={item.id} />;
+        } else {
+          return <h2>{item.title}</h2>;
+        }
       }
     });
 
@@ -193,23 +209,42 @@ export default function Home() {
         </div>
         {key.keyItems && <KeyInput likertKey={key} updateKey={updateKey} />}
 
-        <h2>Likert Items</h2>
-        <button className="btn" onClick={addNewItem}>
-          Add item
-        </button>
+        <h2>Contents</h2>
+        <div className="addButtons">
+          <button className="btn data__input--btn-blue" onClick={addNewItem}>
+            Add item
+          </button>
+          <button
+            className="btn data__input--btn-green"
+            onClick={addNewSubtitle}
+          >
+            Add subtitle
+          </button>
+        </div>
+
         <DropZone position={0} reorderItems={reorderItems} key={0} />
         {key.keyItems &&
           items.map((item, index) => {
             return (
               <>
-                <ItemInput
-                  updateItems={updateItems}
-                  deleteItem={deleteItem}
-                  item={item}
-                  likertKey={key}
-                  key={item.id}
-                  position={index}
-                />
+                {isItem(item) ? (
+                  <ItemInput
+                    updateItems={updateItems}
+                    deleteItem={deleteItem}
+                    item={item}
+                    likertKey={key}
+                    key={item.id}
+                    position={index}
+                  />
+                ) : (
+                  <SubtitleInput
+                    updateItems={updateItems}
+                    deleteItem={deleteItem}
+                    subtitle={item}
+                    key={item.id}
+                    position={index}
+                  />
+                )}
                 <DropZone
                   position={index + 1}
                   reorderItems={reorderItems}
