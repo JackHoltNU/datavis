@@ -160,7 +160,7 @@ export default function Home() {
         if (isItem(item)) {
           return <Likert likertKey={key} item={item} key={item.id} />;
         } else {
-          return <h2>{item.title}</h2>;
+          return <h2 key={item.id}>{item.title}</h2>;
         }
       }
     });

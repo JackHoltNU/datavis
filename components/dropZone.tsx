@@ -22,7 +22,7 @@ const DropZone = ({ position, reorderItems }: Props) => {
     setShowDropArea(false);
   };
 
-  const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
+  const onDrop = (event: React.DragEvent<HTMLElement>) => {
     event.preventDefault();
 
     const dragDataRaw = event.dataTransfer.getData("text/plain");

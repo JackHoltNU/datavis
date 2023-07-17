@@ -71,12 +71,12 @@ const ItemInput = ({
 
   const onDrag = (event: React.DragEvent<HTMLElement>) => {
     setGrabbed(true);
-    const dragData: DragData = {
+    const dragObj: DragData = {
       item,
       position,
     };
-    const dragJson = JSON.stringify(dragData);
-    event.dataTransfer.setData("text/plain", dragJson);
+    const dragPlain = JSON.stringify(dragObj);
+    event.dataTransfer.setData("text/plain", dragPlain);
   };
 
   const toggleAngleIcon = () => {
