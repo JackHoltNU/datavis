@@ -2,6 +2,7 @@ type Item = {
   id: string;
   title: string;
   blocks: Block[];
+  collapsedInput: boolean;
 };
 
 type DragData = {

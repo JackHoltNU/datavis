@@ -4,8 +4,8 @@ import { Block, DragData, Item, KeyItem, LikertKey } from "./types/types";
 import { v4 as uuidv4 } from "uuid";
 import {
   faGrip,
-  faWindowMinimize,
-  faWindowMaximize,
+  faAngleRight,
+  faAngleDown,
   faTrashCan,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +16,6 @@ interface Props {
   likertKey: LikertKey;
   updateItems: (item: Item, id: number) => void;
   deleteItem: (position: number) => void;
-  id: string;
   position: number;
 }
 
@@ -25,13 +24,15 @@ const ItemInput = ({
   likertKey,
   updateItems,
   deleteItem,
-  id,
   position,
 }: Props) => {
   const [itemName, setItemName] = useState(item.title);
   const [blockArray, setBlockArray] = useState<Block[]>(item.blocks);
-  const [collapseIcon, setCollapseIcon] =
-    useState<IconDefinition>(faWindowMinimize);
+  const [collapseIcon, setCollapseIcon] = useState<IconDefinition>(
+    item.collapsedInput ? faAngleRight : faAngleDown
+  );
+  const [collapsed, setCollapsed] = useState(item.collapsedInput);
+  const [grabbed, setGrabbed] = useState(false);
 
   useEffect(() => {
     setBlockArray([
@@ -48,10 +49,11 @@ const ItemInput = ({
       title: itemName,
       blocks: blockArray,
       id: item.id,
+      collapsedInput: collapsed,
     };
 
     updateItems(newItem, position);
-  }, [blockArray, itemName, id]);
+  }, [blockArray, itemName, item.id, collapsed]);
 
   const updateBlockValue = useCallback((value: Block, num) => {
     // to add validation of value
@@ -68,6 +70,7 @@ const ItemInput = ({
   }, []);
 
   const onDrag = (event: React.DragEvent<HTMLElement>) => {
+    setGrabbed(true);
     const dragData: DragData = {
       item,
       position,
@@ -77,10 +80,10 @@ const ItemInput = ({
   };
 
   const toggleAngleIcon = () => {
-    if (collapseIcon === faWindowMinimize) {
-      setCollapseIcon(faWindowMaximize);
+    if (collapseIcon === faAngleDown) {
+      setCollapseIcon(faAngleRight);
     } else {
-      setCollapseIcon(faWindowMinimize);
+      setCollapseIcon(faAngleDown);
     }
   };
 
@@ -106,11 +109,14 @@ const ItemInput = ({
 
   return (
     <section className="data__input--section">
-      <div className="data__input--box data__input--boxitem">
+      <div
+        className={grabbed ? "data__input--box grabbed" : "data__input--box"}
+      >
         <div
           className="data__input--header"
           draggable
           onDragStart={(event) => onDrag(event)}
+          onDragEnd={() => setGrabbed(false)}
         >
           <div className="data__input--cornericon">
             <FontAwesomeIcon
@@ -127,21 +133,33 @@ const ItemInput = ({
             <FontAwesomeIcon icon={faGrip} className="data__input--icon" />
             {itemName}
           </h2>
-          <div className="data__input--cornericon"></div>
+          <div className="data__input--cornericon">
+            <FontAwesomeIcon
+              icon={collapseIcon}
+              className="data__input--icon"
+              onClick={() => {
+                toggleAngleIcon();
+                setCollapsed(!collapsed);
+              }}
+            />
+          </div>
         </div>
-
-        <div className="data__input--settitle">
-          <label className="data__input--textlabel">Label</label>
-          <input
-            className="data__input--textinput"
-            type="text"
-            value={itemName}
-            onChange={(e) => {
-              setItemTitle(e.target.value);
-            }}
-          />
-        </div>
-        {blockInputs}
+        {!collapsed && (
+          <div className="data__input--collapsearea">
+            <div className="data__input--settitle">
+              <label className="data__input--textlabel">Label</label>
+              <input
+                className="data__input--textinput"
+                type="text"
+                value={itemName}
+                onChange={(e) => {
+                  setItemTitle(e.target.value);
+                }}
+              />
+            </div>
+            {blockInputs}
+          </div>
+        )}
       </div>
     </section>
   );

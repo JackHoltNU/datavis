@@ -50,6 +50,7 @@ export default function Home() {
       title: "Example",
       id: uuidv4(),
       blocks: defaultItemBlocks.slice(),
+      collapsedInput: false,
     },
   ]);
   const [key, setKey] = useState<LikertKey>({
@@ -117,6 +118,7 @@ export default function Home() {
       id: uuidv4(),
       title: `Item ${items.length + 1}`,
       blocks: defaultItemBlocks.slice(),
+      collapsedInput: false,
     });
     setItems([...tempItems]);
   }, [items]);
@@ -195,7 +197,7 @@ export default function Home() {
         <button className="btn" onClick={addNewItem}>
           Add item
         </button>
-        <DropZone position={0} reorderItems={reorderItems} />
+        <DropZone position={0} reorderItems={reorderItems} key={0} />
         {key.keyItems &&
           items.map((item, index) => {
             return (
@@ -203,13 +205,16 @@ export default function Home() {
                 <ItemInput
                   updateItems={updateItems}
                   deleteItem={deleteItem}
-                  id={item.id}
                   item={item}
                   likertKey={key}
                   key={item.id}
                   position={index}
                 />
-                <DropZone position={index + 1} reorderItems={reorderItems} />
+                <DropZone
+                  position={index + 1}
+                  reorderItems={reorderItems}
+                  key={index + 1}
+                />
               </>
             );
           })}

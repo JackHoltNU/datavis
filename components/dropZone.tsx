@@ -24,7 +24,16 @@ const DropZone = ({ position, reorderItems }: Props) => {
     const dragDataRaw = event.dataTransfer.getData("text/plain");
     const dragData: DragData = JSON.parse(dragDataRaw);
 
-    reorderItems(dragData.item, dragData.position, position);
+    const oldPosition = dragData.position;
+    let newPosition = position;
+
+    if (newPosition > oldPosition) {
+      newPosition -= 1;
+    }
+
+    if (oldPosition != newPosition) {
+      reorderItems(dragData.item, oldPosition, newPosition);
+    }
 
     setShowDropArea(false);
   };
