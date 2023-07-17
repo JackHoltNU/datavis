@@ -64,185 +64,187 @@
   }
 }
 
-.data__dropzone {
-  width: 100%;
-  height: 1.5rem;
+.data {
+  &__dropzone {
+    width: 100%;
+    height: 1.5rem;
 
-  &--active {
-    border: dotted green 0.3rem;
-    border-radius: 0.25rem;
-    height: 3rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-}
-
-.data__input--btn {
-  &-blue {
-    background-color: rgb(73, 140, 255);
-  }
-  &-green {
-    background-color: rgb(42, 183, 75);
-  }
-}
-
-.data__input--box {
-  background-color: rgb(60, 60, 60);
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  width: 100%;
-  transition: all 0.5s ease;
-
-  &-blue {
-    border-top: solid 0.4rem rgb(73, 140, 255);
-  }
-  &-green {
-    border-top: solid 0.4rem rgb(42, 183, 75);
-  }
-  &key {
-    margin-top: 2.5rem;
-  }
-}
-
-.data__input--header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.data__input--section {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
-.data__input--itemtitle {
-  align-items: center;
-  display: flex;
-  font-size: 1.4rem;
-  justify-content: center;
-  margin: 0;
-  width: 80%;
-
-  &:hover {
-    cursor: grab;
+    &--active {
+      border: dotted green 0.3rem;
+      border-radius: 0.25rem;
+      height: 3rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
   }
 
-  @media (max-width: $bp-small) {
-    font-size: 4rem;
+  &__btn {
+    &--blue {
+      background-color: rgb(73, 140, 255);
+    }
+    &--green {
+      background-color: rgb(42, 183, 75);
+    }
   }
-}
 
-.data__input--icon {
-  height: 1.76rem;
-  margin-right: 1rem;
-  width: 1.76rem;
+  &__box {
+    background-color: rgb(60, 60, 60);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    transition: all 0.5s ease;
 
-  &:hover {
-    cursor: pointer;
+    &--blue {
+      border-top: solid 0.4rem rgb(73, 140, 255);
+    }
+    &--green {
+      border-top: solid 0.4rem rgb(42, 183, 75);
+    }
+    &key {
+      margin-top: 2.5rem;
+    }
   }
-}
 
-.data__input--cornericon {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  width: 10%;
-}
-
-.data__input--block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: $bp-small) {
-    margin-bottom: 1.5rem;
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
-}
 
-.data__input--blocklabel {
-  align-items: center;
-  border-radius: 0.3rem;
-  display: flex;
-  font-size: 1.2rem;
-  height: 2.5rem;
-  margin-right: 0.5rem;
-
-  @media (max-width: $bp-small) {
-    font-size: 4rem;
+  &__section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
   }
-}
 
-.data__input--blockinput {
-  background-color: $color-light;
-  border: none;
-  border-radius: 0.3rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin: 0.5rem;
-  padding-right: 0.4rem;
-  text-align: center;
+  &__itemtitle {
+    align-items: center;
+    display: flex;
+    font-size: 1.4rem;
+    justify-content: center;
+    margin: 0;
+    width: 80%;
 
-  @media (max-width: $bp-small) {
-    font-size: 4rem;
-    width: 8rem;
-    height: 4.5rem;
+    &:hover {
+      cursor: grab;
+    }
+
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+    }
   }
-}
 
-.data__input--keyItemInput {
-  background-color: $color-light;
-  border: none;
-  border-radius: 0.3rem;
-  width: 20rem;
-  height: 2rem;
-  margin: 0.4rem;
+  &__icon {
+    height: 1.76rem;
+    margin-right: 1rem;
+    width: 1.76rem;
 
-  @media (max-width: $bp-small) {
-    font-size: 4rem;
-    width: 45rem;
-    height: 4.5rem;
+    &:hover {
+      cursor: pointer;
+    }
   }
-}
 
-.data__input--settitle {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-
-  @media (max-width: $bp-small) {
-    margin-bottom: 1.5rem;
+  &__cornericon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 10%;
   }
-}
 
-.data__input--textlabel {
-  font-size: 1.2rem;
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  @media (max-width: $bp-small) {
-    font-size: 4rem;
+    @media (max-width: $bp-small) {
+      margin-bottom: 1.5rem;
+    }
   }
-}
 
-.data__input--textinput {
-  background-color: $color-light;
-  border: none;
-  border-radius: 0.3rem;
-  width: 15rem;
-  height: 2.5rem;
-  margin: 0.5rem;
-  padding-right: 0.4rem;
-  text-align: right;
+  &__blocklabel {
+    align-items: center;
+    border-radius: 0.3rem;
+    display: flex;
+    font-size: 1.2rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
 
-  @media (max-width: $bp-small) {
-    font-size: 4rem;
-    width: 45rem;
-    height: 4.5rem;
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+    }
+  }
+
+  &__blockinput {
+    background-color: $color-light;
+    border: none;
+    border-radius: 0.3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0.5rem;
+    padding-right: 0.4rem;
+    text-align: center;
+
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+      width: 8rem;
+      height: 4.5rem;
+    }
+  }
+
+  &__keyiteminput {
+    background-color: $color-light;
+    border: none;
+    border-radius: 0.3rem;
+    width: 20rem;
+    height: 2rem;
+    margin: 0.4rem;
+
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+      width: 45rem;
+      height: 4.5rem;
+    }
+  }
+
+  &__titleinput {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    @media (max-width: $bp-small) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__textlabel {
+    font-size: 1.2rem;
+
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+    }
+  }
+
+  &__textinput {
+    background-color: $color-light;
+    border: none;
+    border-radius: 0.3rem;
+    width: 15rem;
+    height: 2.5rem;
+    margin: 0.5rem;
+    padding-right: 0.4rem;
+    text-align: right;
+
+    @media (max-width: $bp-small) {
+      font-size: 4rem;
+      width: 45rem;
+      height: 4.5rem;
+    }
   }
 }
 

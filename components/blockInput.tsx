@@ -33,15 +33,15 @@ const BlockInput = ({
   }, [blockValue, blockLabel]);
 
   return (
-    <div className="data__input--block">
+    <div className="data__block">
       {itemIndex && (
         <>
           <div className="swatch" style={{ backgroundColor: colour }}></div>
         </>
       )}
-      <label className="data__input--blocklabel">{inputName}</label>
+      <label className="data__blocklabel">{inputName}</label>
       <input
-        className="data__input--blockinput"
+        className="data__blockinput"
         type="text"
         value={blockValue}
         onChange={(e) => {

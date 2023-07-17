@@ -211,13 +211,10 @@ export default function Home() {
 
         <h2>Contents</h2>
         <div className="addButtons">
-          <button className="btn data__input--btn-blue" onClick={addNewItem}>
+          <button className="btn data__btn--blue" onClick={addNewItem}>
             Add item
           </button>
-          <button
-            className="btn data__input--btn-green"
-            onClick={addNewSubtitle}
-          >
+          <button className="btn data__btn--green" onClick={addNewSubtitle}>
             Add subtitle
           </button>
         </div>

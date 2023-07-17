@@ -108,39 +108,39 @@ const ItemInput = ({
   }, []);
 
   return (
-    <section className="data__input--section">
+    <section className="data__section">
       <div
         className={
           grabbed
-            ? "data__input--box data__input--box-blue grabbed"
-            : "data__input--box data__input--box-blue"
+            ? "data__box data__box--blue grabbed"
+            : "data__box data__box--blue"
         }
       >
         <div
-          className="data__input--header"
+          className="data__header"
           draggable
           onDragStart={(event) => onDrag(event)}
           onDragEnd={() => setGrabbed(false)}
         >
-          <div className="data__input--cornericon">
+          <div className="data__cornericon">
             <FontAwesomeIcon
               icon={faTrashCan}
-              className="data__input--icon"
+              className="data__icon"
               onClick={() => deleteItem(position)}
             />
           </div>
           <h2
-            className="data__input--itemtitle"
+            className="data__itemtitle"
             draggable
             onDragStart={(event) => onDrag(event)}
           >
-            <FontAwesomeIcon icon={faGrip} className="data__input--icon" />
+            <FontAwesomeIcon icon={faGrip} className="data__icon" />
             {itemName}
           </h2>
-          <div className="data__input--cornericon">
+          <div className="data__cornericon">
             <FontAwesomeIcon
               icon={collapseIcon}
-              className="data__input--icon"
+              className="data__icon"
               onClick={() => {
                 toggleAngleIcon();
                 setCollapsed(!collapsed);
@@ -149,11 +149,11 @@ const ItemInput = ({
           </div>
         </div>
         {!collapsed && (
-          <div className="data__input--collapsearea">
-            <div className="data__input--settitle">
-              <label className="data__input--textlabel">Label</label>
+          <div className="data__collapsearea">
+            <div className="data__titleinput">
+              <label className="data__textlabel">Label</label>
               <input
-                className="data__input--textinput"
+                className="data__textinput"
                 type="text"
                 value={itemName}
                 onChange={(e) => {

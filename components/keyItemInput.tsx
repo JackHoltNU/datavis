@@ -24,7 +24,7 @@ const KeyItemInput = ({ itemIndex, keyitem, updateKeyItem }: Props) => {
   }, [blockValue, pairColour]);
 
   return (
-    <div className="data__input--block">
+    <div className="data__block">
       <div
         className="swatch"
         onMouseDown={() => setDisplayPicker(true)}
@@ -44,7 +44,7 @@ const KeyItemInput = ({ itemIndex, keyitem, updateKeyItem }: Props) => {
         )}
       </div>
       <input
-        className="data__input--keyItemInput"
+        className="data__keyiteminput"
         type="text"
         value={blockValue}
         onChange={(e) => {
