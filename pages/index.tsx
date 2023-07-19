@@ -129,7 +129,7 @@ export default function Home() {
     const tempItems = items;
     tempItems.push({
       id: uuidv4(),
-      title: "Test",
+      title: "New Subtitle",
       collapsedInput: false,
     });
     setItems([...tempItems]);
