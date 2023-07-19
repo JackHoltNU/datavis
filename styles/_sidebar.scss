@@ -68,6 +68,7 @@
   &__dropzone {
     width: 100%;
     height: 1.5rem;
+    transition: all 0.25s ease;
 
     &--active {
       border: dotted green 0.3rem;
